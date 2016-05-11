@@ -1,3 +1,8 @@
+<!-- 
+Theme from http://startbootstrap.com/template-overviews/simple-sidebar/
+Edited by Matt DePero (deperomm@miamioh.edu)
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Matt DePero - CSE451 Final Project</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,34 +37,26 @@
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                        Start Bootstrap
+                        Route Finder and Sharer
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    CSE451
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    Spring 2016
                 </li>
                 <li>
-                    <a href="#">Overview</a>
+                    Final Project
                 </li>
                 <li>
-                    <a href="#">Events</a>
+                    Matt DePero
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    deperomm
                 </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
@@ -68,10 +65,50 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                        <div id="map"></div>
+                        <script>
+                          // Note: This example requires that you consent to location sharing when
+                          // prompted by your browser. If you see the error "The Geolocation service
+                          // failed.", it means you probably did not give permission for the browser to
+                          // locate you.
+
+                          function initMap() {
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                              center: {lat: -34.397, lng: 150.644},
+                              zoom: 6
+                            });
+                            var infoWindow = new google.maps.InfoWindow({map: map});
+
+                            // Try HTML5 geolocation.
+                            if (navigator.geolocation) {
+                              navigator.geolocation.getCurrentPosition(function(position) {
+                                var pos = {
+                                  lat: position.coords.latitude,
+                                  lng: position.coords.longitude
+                                };
+
+                                infoWindow.setPosition(pos);
+                                infoWindow.setContent('Location found.');
+                                map.setCenter(pos);
+                              }, function() {
+                                handleLocationError(true, infoWindow, map.getCenter());
+                              });
+                            } else {
+                              // Browser doesn't support Geolocation
+                              handleLocationError(false, infoWindow, map.getCenter());
+                            }
+                          }
+
+                          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent(browserHasGeolocation ?
+                                                  'Error: The Geolocation service failed.' :
+                                                  'Error: Your browser doesn\'t support geolocation.');
+                          }
+                        </script>
+                        <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACnVBGCT_qPTAZHmWdOsE8HQhy2dAAVBM&callback=initMap">
+                        </script>
                     </div>
                 </div>
             </div>
@@ -87,13 +124,13 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Menu Toggle Script -->
+    <!-- Menu Toggle Script (From theme) 
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    </script>
+    </script> -->
 
 </body>
 
