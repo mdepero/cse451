@@ -72,7 +72,7 @@ html, body {
 }
 
 .sidebar-nav li {
-    text-indent: 20px;
+    margin-left: 20px;
 }
 
 .sidebar-nav li {
