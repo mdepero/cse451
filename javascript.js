@@ -83,7 +83,7 @@ function generateDirections(){
 
 	console.log(markers[0].getPosition().lat());
 
-	$('#output').append('<li>6. Getting route data from Bing Maps REST service...');
+	$('#output').append('<li>6. Getting route data from lat long data using Bing Maps REST service...');
 	$.ajax({
 		url: "http://dev.virtualearth.net/REST/v1/Routes?wayPoint.1="+markers[0].getPosition().lat()+","+markers[0].getPosition().lng()+"&wayPoint.2="+markers[1].getPosition().lat()+","+markers[1].getPosition().lng()+"&key=AkRn4tv0Mk98zABu8tq_k6EYgAyeHHkDZZ2z3xUhpNMAAkB7HnBFBa0_IXkzhEFD",
 		dataType: "jsonp",
@@ -92,7 +92,7 @@ function generateDirections(){
 		success: function(result){
 			console.log(result);
 
-			generateKMLFromRoute(result);
+			plotRouteAndGenerateKMLFromRoute(result);
 		},
 		error: function( xhr, status, error){
 			console.log(error);
@@ -104,9 +104,9 @@ function generateDirections(){
 
 
 
-function generateKMLFromRoute(result){
+function plotRouteAndGenerateKMLFromRoute(result){
 
-	$('#output').append('<li>7. Got route data back, generating KML from data...</li>');
+	$('#output').append('<li>7. Got route data back, plotting route and generating KML from data...</li>');
 	var coords = [];
 	var route = result.resourceSets[0].resources[0];
 	var legs = route.routeLegs[0];
@@ -114,6 +114,7 @@ function generateKMLFromRoute(result){
 	coords.push(legs.actualStart.coordinates);
 
 	for(var i = 0; i < legs.itineraryItems.length; i++){
+
 		coords.push(legs.itineraryItems[i].maneuverPoint.coordinates);
 
 		markers.push( new google.maps.Marker({
@@ -129,8 +130,21 @@ function generateKMLFromRoute(result){
 
 	console.log(coords);
 
+	$.ajax({
+		url: "http://ceclnx01.cec.miamioh.edu/~deperomm/cse451/final/kml.php?generate",
+		dataType: "json",
+		type: "POST",
+		data: JSON.stringify(coords),
+		success: function(result){
+			console.log(result);
 
-
+			displayLinkAndShare(result);
+		},
+		error: function( xhr, status, error){
+			console.log(error);
+			bootbox.alert("An error occurred: "+xhr.responseText);
+		}
+	});
 
 }
 
