@@ -15,7 +15,7 @@ function promptAndGetLocation(){
 
 }
 
-var map;
+var map, markers;
 
 function showCurrentLocation(lat, long) {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -23,11 +23,12 @@ function showCurrentLocation(lat, long) {
 		center: {lat: lat, lng: long}
 	});
 	var image = 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-32.png';
-	var beachMarker = new google.maps.Marker({
-		position: {lat: lat, lng: long},
-		map: map,
-		icon: image
-	});
+	markers.push( new google.maps.Marker({
+			position: {lat: lat, lng: long},
+			map: map,
+			icon: image
+		}
+	);
 	$('#output').append('<li>3. Enter a destination...</li>');
 	$('#output').append('<li><input type="text" id="dest" class="form-control destForm" placeholder="Address or Place"><button type="button" class="btn btn-primary destForm" onclick="setDestination();">Submit</button></li>');
 }
@@ -63,16 +64,14 @@ function gotDestination(result){
 
 	var latlng = result.results[0].geometry.location;
 
-	var marker = new google.maps.Marker({
-		position: latlng,
-		map: map,
-		animation: google.maps.Animation.DROP,
-		title: result.results[0].address_components[0].long_name,
-		label: result.results[0].address_components[0].long_name
-	});
+	markers.push( new google.maps.Marker({
+			position: latlng,
+			map: map,
+			animation: google.maps.Animation.DROP,
+			title: result.results[0].address_components[0].long_name
+		})
+	);
 	makeMapFitMarkers();
-
-	console.log(result.results[0].address_components[0].long_name);
 	
 }
 
@@ -92,8 +91,8 @@ function gotDestination(result){
 function makeMapFitMarkers() {
 
     var bounds = new google.maps.LatLngBounds();
-    for (var i=0; i < markersArray.length; i++) {
-        bounds.extend(markersArray[i].getPosition());
+    for (var i=0; i < markers.length; i++) {
+        bounds.extend(markers[i].getPosition());
     }
     map.fitBounds(bounds);
 }
