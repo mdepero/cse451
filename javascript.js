@@ -43,7 +43,9 @@ function setDestination(){
 		url:"https://maps.googleapis.com/maps/api/geocode/json?address="+$('#dest').val()+"&key=AIzaSyBkqzqS1B7Jl-8zUfN1K-Atdp2XMIehnOg",
 		dataType: "application/json",
 		type: "GET",
-		success: gotDestination,
+		success: function(result){
+			gotDestination(result);
+		},
 	    error: function(error){
 	    	console.log(error);
 	    	bootbox.alert("An error occurred: "+error);
