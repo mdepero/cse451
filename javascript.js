@@ -3,11 +3,12 @@
 function promptAndGetLocation(){
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-		  showCurrentLocation(position.coords.latitude, position.coords.longitude);
+			$('#map').html("");// clear the "allow location services" message
+			showCurrentLocation(position.coords.latitude, position.coords.longitude);
 		});
 	} else {
 		// Recursively call the function until the user allows location, or the user has an out of date browser
-		bootbox.alert("Please accept the prompt asking to allow the browser to see your location.<br/><br/>If you keep getting this message, please use a modern browser.",function(){promptAndGetLocation()});
+		bootbox.alert("Please use a modern browser.");
 	}
 
 }
