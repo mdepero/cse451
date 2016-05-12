@@ -18,7 +18,7 @@ function promptAndGetLocation(){
 
 function showCurrentLocation(lat, long) {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 1,
+		zoom: 12,
 		center: {lat: lat, lng: long}
 	});
 	var image = 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-128.png';
