@@ -27,7 +27,7 @@ function showCurrentLocation(lat, long) {
 			position: {lat: lat, lng: long},
 			map: map,
 			icon: image
-		}
+		})
 	);
 	$('#output').append('<li>3. Enter a destination...</li>');
 	$('#output').append('<li><input type="text" id="dest" class="form-control destForm" placeholder="Address or Place"><button type="button" class="btn btn-primary destForm" onclick="setDestination();">Submit</button></li>');
@@ -69,7 +69,8 @@ function gotDestination(result){
 			map: map,
 			animation: google.maps.Animation.DROP,
 			title: result.results[0].address_components[0].long_name
-		}) );
+		})
+	);
 	makeMapFitMarkers();
 	
 }
