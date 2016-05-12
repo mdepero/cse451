@@ -63,7 +63,7 @@ function setDestination(){
 function gotDestination(result){
 	console.log(result);
 
-	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class="btn btn-primary" onclick="generateDirections()">Generate Directions</button></li>');
+	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" id="genRoute" class="btn btn-primary" onclick="generateDirections()">Generate Directions</button></li>');
 
 	var latlng = result.results[0].geometry.location;
 
@@ -105,6 +105,8 @@ function generateDirections(){
 
 
 function plotRouteAndGenerateKMLFromRoute(result){
+
+	$('#genRoute').prop("disabled",true);
 
 	$('#output').append('<li>7. Got route data back, plotting route and generating KML from data...</li>');
 	var coords = [];
@@ -149,6 +151,24 @@ function plotRouteAndGenerateKMLFromRoute(result){
 }
 
 
+function displayLinkAndShare(result){
+
+	if(result.status != success){
+		bootbox.alert("Error generating KML: "+result.message);
+		return;
+	}
+
+	var kml = result.downloadURL;
+
+	$('#output').append('<li>8.KML file generated, displaying generated file on map...<br/><a href="'+kml+'" target="_blank">Download KML file</a></li>');
+
+
+	var ctaLayer = new google.maps.KmlLayer({
+	    url: kml,
+	    map: map
+	  });
+
+}
 
 
 
