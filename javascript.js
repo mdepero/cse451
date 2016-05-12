@@ -2,10 +2,10 @@
 
 function promptAndGetLocation(){
 	if ("geolocation" in navigator) {
-		$('#output').append('<li>Finding current location...</li>');
+		$('#output').append('<li>1. Finding current location...</li>');
 		navigator.geolocation.getCurrentPosition(function(position) {
 			$('#map').html("");// clear the "allow location services" message
-			$('#output').append('<li>Current location found, displaying map...</li>');
+			$('#output').append('<li>2. Current location found, displaying map...</li>');
 			showCurrentLocation(position.coords.latitude, position.coords.longitude);
 		});
 	} else {
@@ -28,7 +28,7 @@ function showCurrentLocation(lat, long) {
 		map: map,
 		icon: image
 	});
-	$('#output').append('<li>Enter a destination...</li>');
+	$('#output').append('<li>3. Enter a destination...</li>');
 	$('#output').append('<li><input type="text" id="dest" class="form-control destForm" placeholder="Address or Place"><button type="button" class="btn btn-primary destForm" onclick="setDestination();">Submit</button></li>');
 }
 
@@ -40,7 +40,7 @@ function setDestination(){
 		return;
 	}
 	$('.destForm').prop("disabled",true);
-	$('#output').append('<li>Querying Google Geocoding API for lat long of your address...</li>');
+	$('#output').append('<li>4. Querying Google Geocoding API for lat long of your address...</li>');
 	$.ajax({
 		url:"https://maps.googleapis.com/maps/api/geocode/json?address="+$('#dest').val()+"&key=AIzaSyBkqzqS1B7Jl-8zUfN1K-Atdp2XMIehnOg",
 		dataType: "json",
@@ -59,7 +59,7 @@ function setDestination(){
 function gotDestination(result){
 	console.log(result);
 
-	$('#output').append('<li>Got lat long, adding marker to map</li>');
+	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class"btn btn-primary" onclick="getDirections()">Get Directions</button></li>');
 
 	var latlng = result.results[0].geometry.location;
 
