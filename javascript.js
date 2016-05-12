@@ -251,6 +251,10 @@ function makeMapFitMarkers() {
 
 function alertPopUpBlocker() {
     bootbox.alert('Please allow pop ups to use this project<br/><b>Be sure to mark "always allowed"</b>');
+
+    // prompt the user to allow popups
+    var popUp = window.open('README.md');
+    popUp.close();
 }
 
 
