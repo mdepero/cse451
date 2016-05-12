@@ -248,20 +248,16 @@ function makeMapFitMarkers() {
 
 function permissionsPopUp() {
 	bootbox.alert('When prompted, allow pop ups and location services to use this project<br/><b>Be sure to mark "always allowed"</b>',function(){
-		promptPopUps();
+		
+		// prompting pop up
+		console.log("Prompting user to allow pop ups");
+		var popUp = window.open("http://www.w3schools.com");
+	    if(popUp){
+	    	popUp.close();
+	    }
+
     	promptLocationServices();
 	});
-}
-
-function promptPopUps(){
-
-	console.log("Prompting user to allow pop ups");
-
-    // prompt the user to allow popups
-    var popUp = window.open("http://www.w3schools.com");
-    if(popUp){
-    	popUp.close();
-    }
 }
 
 
