@@ -268,7 +268,6 @@ function checkPopUpBlocker(){
 
 function checkLocationServices(){
 	if ("geolocation" in navigator) {
-		$('#output').append('<li>1. Finding current location...</li>');
 		navigator.geolocation.getCurrentPosition(function(position) {
 			
 			return true;
