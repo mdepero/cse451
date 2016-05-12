@@ -168,8 +168,11 @@ function displayLinkAndShare(result){
 	    map: map
 	  });
 
+	shareKML(kml);
 
-	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl');
+}
+
+function shareKML(kmlURL){
 
 	var provider = 'twitter';
 	OAuth.popup(provider)
@@ -193,10 +196,7 @@ function displayLinkAndShare(result){
 	    //handle error with err
 	    bootbox.alert("An Error Occurred: "+err);
 	});
-
 }
-
-
 
 
 
