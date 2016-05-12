@@ -48,6 +48,8 @@ function setDestination(){
 		dataType: "json",
 		type: "GET",
 		success: function(result){
+			console.log(result);
+
 			gotDestination(result);
 		},
 	    error: function(xhr, status, error){
@@ -89,6 +91,8 @@ function generateDirections(){
 		type: "GET",
 		success: function(result){
 			console.log(result);
+
+			generateKMLFromRoute(result);
 		},
 		error: function( xhr, status, error){
 			console.log(error);
@@ -100,7 +104,27 @@ function generateDirections(){
 
 
 
+function generateKMLFromRoute(result){
 
+	$('#output').append('<li>7. Got route data back, generating KML from data...</li>');
+	var coords = [];
+	var route = result.resourceSets[0].resources[0];
+	var legs = route.routeLegs[0];
+
+	coords.push(legs.actualStart.coordinates);
+
+	for(var i = 0; i < legs.itineraryItems.length; i++){
+		coords.push(legs.itineraryItems[i].maneuverPoint.coordinates);
+	}
+
+	coords.push(legs.actualEnd.coordinates);
+
+	console.log(coords);
+
+
+
+
+}
 
 
 
