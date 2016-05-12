@@ -256,8 +256,10 @@ function permissionsPopUp() {
 function promptPopUps(){
 
     // prompt the user to allow popups
-    var popUp = window.open('README.md');
-    popUp.close();
+    var popUp = window.open("http://www.w3schools.com");
+    if(popUp){
+    	popUp.close();
+    }
 }
 
 
