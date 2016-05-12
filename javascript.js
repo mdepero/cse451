@@ -40,7 +40,7 @@ function showCurrentLocation(lat, long) {
 		})
 	);
 	$('#output').append('<li>3. Enter a destination...</li>');
-	$('#output').append('<li><input type="text" id="dest" class="form-control destForm" placeholder="Address or Place"><button type="button" class="btn btn-primary destForm" onclick="setDestination();">Submit</button></li>');
+	$('#output').append('<li><input type="text" id="dest" class="form-control destForm" placeholder="Address or City"><button type="button" class="btn btn-primary destForm" onclick="setDestination();">Submit</button></li>');
 }
 
 
