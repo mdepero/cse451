@@ -19,7 +19,7 @@ function promptAndGetLocation(){
 
 function showCurrentLocation(lat, long) {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 12,
+		zoom: 15,
 		center: {lat: lat, lng: long}
 	});
 	var image = 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-32.png';
@@ -40,7 +40,7 @@ function setDestination(){
 		return;
 	}
 	$.ajax({
-		url:"https://maps.googleapis.com/maps/api/geocode/json?address="+$('#dest').val()+"&key=AIzaSyACnVBGCT_qPTAZHmWdOsE8HQhy2dAAVBM",
+		url:"https://maps.googleapis.com/maps/api/geocode/json?address="+$('#dest').val()+"&key=AIzaSyBkqzqS1B7Jl-8zUfN1K-Atdp2XMIehnOg",
 		dataType: "application/json",
 		success: gotDestination,
 	    error: function(error){
