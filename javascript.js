@@ -174,6 +174,8 @@ function displayLinkAndShare(result){
 
 function shareKML(kmlURL){
 
+	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl');
+
 	var provider = 'twitter';
 	OAuth.popup(provider)
 	.done(function(result) {
@@ -189,12 +191,12 @@ function shareKML(kmlURL){
 	    })
 	    .fail(function (err) {
 	        //handle error with err
-	        bootbox.alert("An Error Occurred: "+err);
+	        bootbox.alert("An API Error Occurred: "+err);
 	    });
 	})
 	.fail(function (err) {
 	    //handle error with err
-	    bootbox.alert("An Error Occurred: "+err);
+	    bootbox.alert("An OAuth Error Occurred: "+err);
 	});
 }
 
