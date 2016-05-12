@@ -1,9 +1,6 @@
 /* All code by Matt DePero for CSE451 */
 
 function promptAndGetLocation(){
-	if(!checkLocationServices()){
-		return;
-	}
 	if ("geolocation" in navigator) {
 		$('#output').append('<li>1. Finding current location...</li>');
 		navigator.geolocation.getCurrentPosition(function(position) {
