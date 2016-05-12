@@ -189,24 +189,8 @@ function displayLinkAndShare(result){
 
 }
 
+
 function shareKML(){
-
-	// Test pop up status, if popups are blocked, prompt user to unblock and click again
-	var windowName = 'Popup Blocker Test'; 
-	var popUp = window.open('./index.html', windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
-	if (!popUp || popUp.closed || typeof popUp.closed=='undefined') { 	
-		bootbox.alert('Please disable your pop-up blocker and click share button again.'); 
-		return;
-	} 
-	else { 	
-		popUp.close();
-		sendTweet();
-	}
-
-}
-
-
-function sendTweet(){
 
 
 	// popups are allowed, check that KML url was generated
@@ -259,4 +243,20 @@ function makeMapFitMarkers() {
         bounds.extend(markers[i].getPosition());
     }
     map.fitBounds(bounds);
+}
+
+
+function checkPopUpBlocker(){
+
+	// Test pop up status, if popups are blocked, prompt user to unblock and click again
+	var windowName = 'Popup Blocker Test'; 
+	var popUp = window.open('./index.html', windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
+	if (!popUp || popUp.closed || typeof popUp.closed=='undefined') { 	
+		bootbox.alert('Please disable your pop-up blocker and click share button again.'); 
+		return;
+	} 
+	else { 	
+		popUp.close();
+	}
+
 }
