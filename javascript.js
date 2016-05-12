@@ -106,6 +106,15 @@ function plotRouteAndGenerateKMLFromRoute(result){
 
 	$('#genRoute').prop("disabled",true);
 
+	// check and make sure at least one route exists
+	try{
+		var route = result.resourceSets[0].resources[0];
+		var legs = route.routeLegs[0];
+	}catch(err){
+		bootbox.alert("No route could be found. Please refresh the page and try again");
+		return;
+	}
+
 	$('#output').append('<li>7. Got route data back, plotting route and generating KML from data...</li>');
 	var coords = [];
 	var route = result.resourceSets[0].resources[0];
