@@ -68,7 +68,7 @@ else
 $kml .= '
 ';
 
-$kml .= $coord[1].','.$coord[0].',0';
+$kml .= $coord[1].','.$coord[0].',3000';
 
 }
 
