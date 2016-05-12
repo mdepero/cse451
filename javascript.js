@@ -167,7 +167,7 @@ function plotRouteAndGenerateKMLFromRoute(result){
 
 }
 
-
+var kmlURL = "";
 function displayLinkAndShare(result){
 
 	if(result.status != "success"){
@@ -175,25 +175,46 @@ function displayLinkAndShare(result){
 		return;
 	}
 
-	var kml = result.downloadURL;
+	kmlURL = result.downloadURL;
 
-	$('#output').append('<li>8.KML file generated, displaying generated file on map...<br/><a href="'+kml+'" target="_blank">Download KML file</a></li>');
+	$('#output').append('<li>8.KML file generated, displaying generated file on map...<br/><a href="'+kmlURL+'" target="_blank">Download KML file</a></li>');
 
 
 	var ctaLayer = new google.maps.KmlLayer({
-	    url: kml,
+	    url: kmlURL,
 	    map: map
 	  });
 
-	shareKML(kml);
+	$('#output').append('<li><button type="button" id="shareKML" class="btn btn-primary" onclick="shareKML()">Share KML</button></li>');
 
 }
 
-function shareKML(kmlURL){
+function shareKML(){
+
+	// Test pop up status, if popups are blocked, prompt user to unblock and click again
+	var windowName = 'Popup Blocker Test'; 
+	var popUp = window.open('./index.html', windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
+	if (popUp == null || typeof(popUp)=='undefined') { 	
+		bootbox.alert('Please disable your pop-up blocker and click share button again.'); 
+		return;
+	} 
+	else { 	
+		popUp.close();
+	}
+
+	$('#shareKML').prop("disabled",true);
+
+
+	// popups are allowed, check that KML url was generated
+	if(kmlURL == ""){
+		bootbox.alert("KML document URL not generated correctly");
+		return;
+	}
 
 	OAuth.initialize('02SpHM9-IHixOnQ9wnEglUUn9bY');
 
 
+	// KML URL was generated, run OAuth and send a tweet with the URL
 	OAuth.popup('twitter')
 	.done(function(result) {
 	    result.post('1.1/statuses/update.json', {
