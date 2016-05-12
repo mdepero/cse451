@@ -29,7 +29,7 @@ function showCurrentLocation(lat, long) {
 		icon: image
 	});
 	$('#output').append('<li>Enter a destination...</li>');
-	$('#output').append('<li id="destForm"><input type="text" id="dest" class="form-control" placeholder="Address or Place"><button type="button" class="btn btn-primary" onclick="setDestination();">Submit</button></li>');
+	$('#output').append('<li><input type="text" id="dest" class="form-control destForm" placeholder="Address or Place"><button type="button" class="btn btn-primary destForm" onclick="setDestination();">Submit</button></li>');
 }
 
 
@@ -39,6 +39,8 @@ function setDestination(){
 		bootbox.alert("No destination entered");
 		return;
 	}
+	$('.destForm').prop("disabled",true);
+	$('#output').append('<li>Querying Google Geocoding API for lat long of your address...</li>');
 	$.ajax({
 		url:"https://maps.googleapis.com/maps/api/geocode/json?address="+$('#dest').val()+"&key=AIzaSyBkqzqS1B7Jl-8zUfN1K-Atdp2XMIehnOg",
 		dataType: "json",
@@ -56,6 +58,8 @@ function setDestination(){
 
 function gotDestination(result){
 	console.log(result);
+
+	$('#output').append('<li>Got lat long, adding marker to map</li>');
 
 	var latlng = result.results[0].geometry.location;
 
