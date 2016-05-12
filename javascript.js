@@ -71,6 +71,6 @@ function gotDestination(result){
 		label: result.results[0].address_components[0].long_name
 	});
 
-	console.log(label: result.results[0].address_components[0].long_name);
+	console.log(result.results[0].address_components[0].long_name);
 	
 }
