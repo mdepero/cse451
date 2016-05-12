@@ -120,7 +120,7 @@ function generateKMLFromRoute(result){
 				position: {lat:legs.itineraryItems[i].maneuverPoint.coordinates[0],lng:legs.itineraryItems[i].maneuverPoint.coordinates[1]},
 				map: map,
 				animation: google.maps.Animation.DROP,
-				title: result.results[0].address_components[0].long_name
+				title: "waypoint"
 			})
 		);
 	}
