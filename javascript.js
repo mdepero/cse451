@@ -12,7 +12,7 @@ function promptAndGetLocation(){
 		    bootbox.alert("Geolocation error: "+failure.message,function(){
 		    	if(failure.message.indexOf("Only secure origins are allowed") == 0) {
 			       bootbox.alert("Chrome 50 and newer does not allow geolocation on insecure connection (http) for this project, to view this demo, please use firefox or an older version of Chrome");
-			       $('#output').append('<li>Insecure connection error, please use firefox or an older version of Chrome.</li>');
+			       $('#output').append('<li>**Insecure connection error, please use firefox or an older version of Chrome.</li>');
 			    }
 		    });
 		    return;
