@@ -259,8 +259,8 @@ function checkPopUpBlocker(){
 		return false;
 	} 
 	else { 	
-		popUp.close();
 		return true;
+		popUp.close();
 	}
 
 }
