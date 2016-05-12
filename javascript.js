@@ -112,6 +112,7 @@ function plotRouteAndGenerateKMLFromRoute(result){
 		var legs = route.routeLegs[0];
 	}catch(err){
 		bootbox.alert("No route could be found. Please refresh the page and try again");
+		$('#output').append('<li>Encountered an error, refresh the page...</li>');
 		return;
 	}
 
