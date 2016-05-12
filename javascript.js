@@ -1,7 +1,7 @@
 /* All code by Matt DePero for CSE451 */
 
 function promptAndGetLocation(){
-	if(!checkPopUpBlocker() || !checkLocationServices()){
+	if(hasPopUpBlocker() || !checkLocationServices()){
 		return;
 	}
 	if ("geolocation" in navigator) {
@@ -249,7 +249,7 @@ function makeMapFitMarkers() {
 }
 
 
-function checkPopUpBlocker() {
+function hasPopUpBlocker() {
     var result = false;
 
     var poppedWindow = window.open('./index.html');
@@ -280,7 +280,7 @@ function checkPopUpBlocker() {
         //    console.warn("Could not access popup window", err);
         //}
     }
-    if(!result){
+    if(result){
     	bootbox.alert('Please allow pop ups to use this project<br/><b>Be sure to mark "always allowed"</b>');
     }
     console.log('Popup blocker status: '+result);
