@@ -15,10 +15,10 @@ function promptAndGetLocation(){
 
 }
 
-
+var map;
 
 function showCurrentLocation(lat, long) {
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
 		center: {lat: lat, lng: long}
 	});
@@ -46,9 +46,9 @@ function setDestination(){
 		success: function(result){
 			gotDestination(result);
 		},
-	    error: function(error){
+	    error: function(xhr, status, error){
 	    	console.log(error);
-	    	bootbox.alert("An error occurred: "+error);
+	    	bootbox.alert("An error occurred: "+xhr.responseText);
 	    }
 	});
 }
@@ -56,5 +56,13 @@ function setDestination(){
 
 function gotDestination(result){
 	console.log(result);
-	bootbox.alert("got it");
+
+	var latlng = result.results[0].geometry.location;
+
+	var marker = new google.maps.Marker({
+		position: latlng,
+		map: map,
+		title: result.results[0].address_components[0].long_name
+	});
+	
 }
