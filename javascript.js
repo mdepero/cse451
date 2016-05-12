@@ -66,5 +66,7 @@ function gotDestination(result){
 		title: result.results[0].address_components[0].long_name,
 		label: result.results[0].address_components[0].long_name
 	});
+
+	console.log(label: result.results[0].address_components[0].long_name);
 	
 }
