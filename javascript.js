@@ -249,20 +249,39 @@ function makeMapFitMarkers() {
 }
 
 
-function checkPopUpBlocker(){
+function checkPopUpBlocker() {
+    var result = false;
 
-	// Test pop up status, if popups are blocked, prompt user to unblock and click again
-	var windowName = 'Popup Blocker Test'; 
-	var popUp = window.open('./index.html', windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
-	if (!popUp || popUp.closed || typeof popUp.closed=='undefined') { 	
-		bootbox.alert('Please disable your pop-up blocker before using this site.<br/><br/><b>Be sure to mark "always allow"</b>'); 
-		return false;
-	} 
-	else { 	
-		return true;
-		popUp.close();
-	}
+    var poppedWindow = window.open('./index.html');
 
+    try {
+        if (typeof poppedWindow == 'undefined') {
+            // Safari with popup blocker... leaves the popup window handle undefined
+            result = true;
+        }
+        else if (poppedWindow && poppedWindow.closed) {
+            // This happens if the user opens and closes the client window...
+            // Confusing because the handle is still available, but it's in a "closed" state.
+            // We're not saying that the window is not being blocked, we're just saying
+            // that the window has been closed before the test could be run.
+            result = false;
+        }
+        else if (poppedWindow && poppedWindow.test) {
+            // This is the actual test. The client window should be fine.
+            result = false;
+        }
+        else {
+            // Else we'll assume the window is not OK
+            result = true;
+        }
+
+    } catch (err) {
+        //if (console) {
+        //    console.warn("Could not access popup window", err);
+        //}
+    }
+
+    return result;
 }
 
 
