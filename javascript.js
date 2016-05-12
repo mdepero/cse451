@@ -172,10 +172,29 @@ function displayLinkAndShare(result){
 
 function shareKML(kmlURL){
 
-	// Initialize with your OAuth.io app public key
-	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl');
-	OAuth.popup('twitter', function(error, success){
-	  console.log(success);
+	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl','oZywKufBzyV2iYTsF2whiDTODaNAHhPF5TzUB5h2kAgZL1g0iJ');
+
+
+	OAuth.popup('twitter')
+	.done(function(result) {
+	    result.post('statuses/update', {
+        data: {
+            status: 'this is a test tweet for cse451'
+        }
+	    })
+	    .done(function (response) {
+	        //this will display the id of the message in the console
+	        console.log(response);
+	        $('#output').append('<li>9. A tweet with a link to your KML has been sent.</li>');
+	    })
+	    .fail(function (err) {
+	        //handle error with err
+	        bootbox.alert("An API Error Occurred: "+err);
+	    });
+	})
+	.fail(function (err) {
+	    //handle error with err
+	    bootbox.alert("An OAuth Error Occurred: "+err);
 	});
 }
 
