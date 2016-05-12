@@ -292,6 +292,7 @@ function checkLocationServices(){
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			
+			console.log("Geolocation enabled");
 			return true;
 
 		},function(failure) {
@@ -302,11 +303,13 @@ function checkLocationServices(){
 			       $('#output').append('<li>**Insecure connection error, please use firefox or an older version of Chrome.</li>');
 			    }
 		    });
+		    console.log("Geolocation disabled or blocked");
 		    return false;
 		  });
 	} else {
 		// Recursively call the function until the user allows location, or the user has an out of date browser
 		bootbox.alert("Location services not available, please use a modern browser.");
+		console.log("Geolocation disabled or blocked");
 		return false;
 	}
 }
