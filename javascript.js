@@ -69,8 +69,7 @@ function gotDestination(result){
 			map: map,
 			animation: google.maps.Animation.DROP,
 			title: result.results[0].address_components[0].long_name
-		})
-	);
+		}) );
 	makeMapFitMarkers();
 	
 }
