@@ -246,8 +246,14 @@ function makeMapFitMarkers() {
 }
 
 
-function alertPopUpBlocker() {
-    bootbox.alert('Please allow pop ups to use this project<br/><b>Be sure to mark "always allowed"</b>');
+function permissionsPopUp() {
+	bootbox.alert('When prompted, allow pop ups and location services to use this project<br/><b>Be sure to mark "always allowed"</b>',function(){
+		promptPopUps();
+    	promptLocationServices();
+	});
+}
+
+function promptPopUps(){
 
     // prompt the user to allow popups
     var popUp = window.open('README.md');
@@ -255,7 +261,7 @@ function alertPopUpBlocker() {
 }
 
 
-function checkLocationServices(){
+function promptLocationServices(){
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			
