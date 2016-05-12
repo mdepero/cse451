@@ -2,9 +2,11 @@
 
 function promptAndGetLocation(){
 	if ("geolocation" in navigator) {
+		$('#output').append('<li>Finding current location...</li>');
 		navigator.geolocation.getCurrentPosition(function(position) {
 			$('#map').html("");// clear the "allow location services" message
 			showCurrentLocation(position.coords.latitude, position.coords.longitude);
+			$('#output').append('<li>Current location found, displaying map...</li>');
 		});
 	} else {
 		// Recursively call the function until the user allows location, or the user has an out of date browser
@@ -26,4 +28,12 @@ function showCurrentLocation(lat, long) {
 		map: map,
 		icon: image
 	});
+	$('#output').append('<li>Enter a destination...</li>');
+	$('#output').append('<li id="destForm"><input type="text" id="dest" class="form-control" placeholder="Address or Place"><br/><button type="button" class="btn btn-primary" onclick="setDestination();">Submit</button></li>');
+}
+
+
+
+function setDestination(){
+	alert($('#dest').val());
 }
