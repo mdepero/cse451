@@ -177,7 +177,7 @@ function shareKML(kmlURL){
 
 	OAuth.popup('twitter')
 	.done(function(result) {
-	    result.post('statuses/update', {
+	    result.post('1.1/statuses/update.json', {
         data: {
             status: 'this is a test tweet for cse451'
         }
