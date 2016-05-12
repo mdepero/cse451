@@ -54,6 +54,7 @@ $kml = '<?xml version="1.0" encoding="UTF-8"?>
       <description>A route for CSE451</description>
       <styleUrl>#green</styleUrl>
       <LineString>
+        <extrude>1</extrude>
         <tessellate>1</tessellate>
         <altitudeMode>relativeToGround</altitudeMode>
         <coordinates>';

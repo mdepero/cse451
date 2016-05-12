@@ -202,8 +202,6 @@ function shareKML(){
 		popUp.close();
 	}
 
-	$('#shareKML').prop("disabled",true);
-
 
 	// popups are allowed, check that KML url was generated
 	if(kmlURL == ""){
@@ -225,6 +223,7 @@ function shareKML(){
 	    .done(function (response) {
 	        //this will display the id of the message in the console
 	        console.log(response);
+	        $('#shareKML').prop("disabled",true);
 	        $('#output').append('<li>9. A tweet with a link to your KML has been sent.</li>');
 	    })
 	    .fail(function (err) {
