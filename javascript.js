@@ -115,6 +115,14 @@ function generateKMLFromRoute(result){
 
 	for(var i = 0; i < legs.itineraryItems.length; i++){
 		coords.push(legs.itineraryItems[i].maneuverPoint.coordinates);
+
+		markers.push( new google.maps.Marker({
+				position: {lat:legs.itineraryItems[i].maneuverPoint.coordinatess[0],lng:legs.itineraryItems[i].maneuverPoint.coordinates[1]},
+				map: map,
+				animation: google.maps.Animation.DROP,
+				title: result.results[0].address_components[0].long_name
+			})
+		);
 	}
 
 	coords.push(legs.actualEnd.coordinates);
