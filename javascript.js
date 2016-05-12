@@ -168,6 +168,30 @@ function displayLinkAndShare(result){
 	    map: map
 	  });
 
+
+	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl');
+
+	var provider = 'twitter';
+	OAuth.popup(provider)
+	.done(function(result) {
+	    result.post('statuses/update', {
+        data: {
+            status: 'this is a test tweet for cse451'
+        }
+	    })
+	    .done(function (response) {
+	        //this will display the id of the message in the console
+	        console.log(response.id);
+	    })
+	    .fail(function (err) {
+	        //handle error with err
+	    });
+	})
+	.fail(function (err) {
+	    //handle error with err
+	    bootbox.alert("An Error Occurred: "+err);
+	});
+
 }
 
 
