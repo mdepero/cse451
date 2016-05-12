@@ -181,10 +181,12 @@ function displayLinkAndShare(result){
 	    })
 	    .done(function (response) {
 	        //this will display the id of the message in the console
-	        console.log(response.id);
+	        console.log(response);
+	        $('#output').append('<li>9. A tweet with a link to your KML has been sent.</li>');
 	    })
 	    .fail(function (err) {
 	        //handle error with err
+	        bootbox.alert("An Error Occurred: "+err);
 	    });
 	})
 	.fail(function (err) {
