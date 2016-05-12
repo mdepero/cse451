@@ -1,16 +1,14 @@
 /* All code by Matt DePero for CSE451 */
 
 function promptAndGetLocation(){
-
-	bootbox.alert("Please accept the prompt asking to allow the browser to see your location...",function(){
-		if ("geolocation" in navigator) {
-			navigator.geolocation.getCurrentPosition(function(position) {
-			  showCurrentLocation(position.coords.latitude, position.coords.longitude);
-			});
-		} else {
-			bootbox.alert("Geolocation is not available. Please reload your browser and grant the browser permission to view your location, or use a modern web browser.");
-		}
-	})
+	if ("geolocation" in navigator) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+		  showCurrentLocation(position.coords.latitude, position.coords.longitude);
+		});
+	} else {
+		// Recursively call the function until the user allows location, or the user has an out of date browser
+		bootbox.alert("Please accept the prompt asking to allow the browser to see your location.<br/><br/>If you keep getting this message, please use a modern browser.",function(){promptAndGetLocation()});
+	}
 
 }
 
