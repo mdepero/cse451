@@ -252,7 +252,7 @@ function checkPopUpBlocker(){
 	var windowName = 'Popup Blocker Test'; 
 	var popUp = window.open('./index.html', windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
 	if (!popUp || popUp.closed || typeof popUp.closed=='undefined') { 	
-		bootbox.alert('Please disable your pop-up blocker and click share button again.'); 
+		bootbox.alert('Please disable your pop-up blocker before using this site.<br/><br/><b>Be sure to mark "always allow"</b>'); 
 		return;
 	} 
 	else { 	
