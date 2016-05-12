@@ -59,7 +59,7 @@ function setDestination(){
 function gotDestination(result){
 	console.log(result);
 
-	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class"btn btn-primary" onclick="getDirections()">Get Directions</button></li>');
+	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class="btn btn-primary" onclick="getDirections()">Get Directions</button></li>');
 
 	var latlng = result.results[0].geometry.location;
 
@@ -70,7 +70,30 @@ function gotDestination(result){
 		title: result.results[0].address_components[0].long_name,
 		label: result.results[0].address_components[0].long_name
 	});
+	makeMapFitMarkers();
 
 	console.log(result.results[0].address_components[0].long_name);
 	
+}
+
+
+
+
+
+
+
+
+
+
+/* Extra Functions */
+
+// Resizes the map to fit all markers on it
+// http://stackoverflow.com/questions/16331430/resizing-a-google-map-to-fit-a-group-of-markers
+function makeMapFitMarkers() {
+
+    var bounds = new google.maps.LatLngBounds();
+    for (var i=0; i < markersArray.length; i++) {
+        bounds.extend(markersArray[i].getPosition());
+    }
+    map.fitBounds(bounds);
 }
