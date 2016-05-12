@@ -262,7 +262,7 @@ function promptPopUps(){
 	console.log("Prompting user to allow pop ups");
 
     // prompt the user to allow popups
-    var popUp = window.open("http://www.w3schools.com");
+    var popUp = window.open("popuptest.html");
     if(popUp){
     	popUp.close();
     }
