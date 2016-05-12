@@ -61,7 +61,7 @@ function setDestination(){
 function gotDestination(result){
 	console.log(result);
 
-	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class="btn btn-primary" onclick="getDirections()">Generate Directions</button></li>');
+	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class="btn btn-primary" onclick="generateDirections()">Generate Directions</button></li>');
 
 	var latlng = result.results[0].geometry.location;
 
