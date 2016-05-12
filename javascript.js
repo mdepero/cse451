@@ -44,6 +44,7 @@ function setDestination(){
 		dataType: "application/json",
 		success: gotDestination,
 	    error: function(error){
+	    	console.log(error);
 	    	bootbox.alert("An error occurred: "+error);
 	    }
 	});
