@@ -28,6 +28,9 @@ var map;
 var markers = [];
 
 function showCurrentLocation(lat, long) {
+
+	$('#start').prop("disabled",true);
+
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
 		center: {lat: lat, lng: long}
