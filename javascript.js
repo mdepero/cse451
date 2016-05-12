@@ -189,11 +189,13 @@ function shareKML(kmlURL){
 	    })
 	    .fail(function (err) {
 	        //handle error with err
+	        console.log(err);
 	        bootbox.alert("An API Error Occurred: "+err);
 	    });
 	})
 	.fail(function (err) {
 	    //handle error with err
+	    console.log(err);
 	    bootbox.alert("An OAuth Error Occurred: "+err);
 	});
 }
