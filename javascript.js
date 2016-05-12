@@ -1,6 +1,9 @@
 /* All code by Matt DePero for CSE451 */
 
 function promptAndGetLocation(){
+	if(!checkPopUpBlocker() || !checkLocationServices()){
+		return;
+	}
 	if ("geolocation" in navigator) {
 		$('#output').append('<li>1. Finding current location...</li>');
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -253,10 +256,38 @@ function checkPopUpBlocker(){
 	var popUp = window.open('./index.html', windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
 	if (!popUp || popUp.closed || typeof popUp.closed=='undefined') { 	
 		bootbox.alert('Please disable your pop-up blocker before using this site.<br/><br/><b>Be sure to mark "always allow"</b>'); 
-		return;
+		return false;
 	} 
 	else { 	
 		popUp.close();
+		return true;
 	}
 
+}
+
+
+function checkLocationServices(){
+	if ("geolocation" in navigator) {
+		$('#output').append('<li>1. Finding current location...</li>');
+		navigator.geolocation.getCurrentPosition(function(position) {
+			
+			return true;
+
+		},function(failure) {
+
+		    bootbox.alert("Geolocation error: "+failure.message,function(){
+		    	if(failure.message.indexOf("Only secure origins are allowed") == 0) {
+			       bootbox.alert("Chrome 50 and newer does not allow geolocation on insecure connection (http) for this project, to view this demo, please use firefox or an older version of Chrome");
+			       $('#output').append('<li>**Insecure connection error, please use firefox or an older version of Chrome.</li>');
+			    }else{
+			    	bootbox.alert("Be sure to enable location services");
+			    }
+		    });
+		    return false;
+		  });
+	} else {
+		// Recursively call the function until the user allows location, or the user has an out of date browser
+		bootbox.alert("Location services not available, please use a modern browser.");
+		return false;
+	}
 }

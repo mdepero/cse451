@@ -38,6 +38,9 @@
                 <li class="sidebar-brand">
                         Route Finder and Sharer <br/> CSE451 - Spring 2016 <br/> Matt DePero
                 </li>
+                <li>
+                    <button type="button" class="btn btn-primary" onclick="promptAndGetLocation();">Start Project</button>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -80,7 +83,7 @@
     <script>
     $(document).ready(function(){
         checkPopUpBlocker();
-        promptAndGetLocation();
+        checkLocationServices();
     });
     </script>
 
