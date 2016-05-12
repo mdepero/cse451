@@ -62,7 +62,9 @@ function gotDestination(result){
 	var marker = new google.maps.Marker({
 		position: latlng,
 		map: map,
-		title: result.results[0].address_components[0].long_name
+		animation: google.maps.Animation.DROP,
+		title: result.results[0].address_components[0].long_name,
+		label: result.results[0].address_components[0].long_name
 	});
 	
 }
