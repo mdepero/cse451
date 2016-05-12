@@ -153,7 +153,7 @@ function plotRouteAndGenerateKMLFromRoute(result){
 
 function displayLinkAndShare(result){
 
-	if(result.status != success){
+	if(result.status != "success"){
 		bootbox.alert("Error generating KML: "+result.message);
 		return;
 	}
