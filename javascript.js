@@ -1,5 +1,6 @@
 /* All code by Matt DePero for CSE451 */
 
+// Use browser side geolocation to get the current lat and long
 function promptAndGetLocation(){
 	if ("geolocation" in navigator) {
 		$('#output').append('<li>1. Finding current location...</li>');
@@ -24,9 +25,11 @@ function promptAndGetLocation(){
 
 }
 
+// global map variables
 var map;
 var markers = [];
 
+// add custom marker to map for current location
 function showCurrentLocation(lat, long) {
 
 	$('#start').prop("disabled",true);
@@ -47,7 +50,7 @@ function showCurrentLocation(lat, long) {
 }
 
 
-
+// Use Google geocoding to get the lat long of the location entered by the user
 function setDestination(){
 	if($('#dest').val()==""){
 		bootbox.alert("No destination entered");
@@ -72,6 +75,7 @@ function setDestination(){
 }
 
 
+// take the lat long retrieved from Google and plot it on the map, also redraw map with new boundaries to fit
 function gotDestination(result){
 	console.log(result);
 
@@ -91,6 +95,7 @@ function gotDestination(result){
 }
 
 
+// Take the two locations (in lat and long) generated so far and send them to Bing Map Services to get a route
 function generateDirections(){
 
 	$('#output').append('<li>6. Getting route data from lat long data using Bing Maps REST service...');
@@ -113,7 +118,7 @@ function generateDirections(){
 }
 
 
-
+// Parse the data returned from Microsoft and create an array of every lat long point on the route, send this to the PHP script to be generated into KML
 function plotRouteAndGenerateKMLFromRoute(result){
 
 	$('#genRoute').prop("disabled",true);
@@ -170,7 +175,10 @@ function plotRouteAndGenerateKMLFromRoute(result){
 
 }
 
+// global variable for the URL of the KML file generated
 var kmlURL = "";
+
+// Once the PHP script finishes creating an uploading the KML file, display a link to the file and the option to share it
 function displayLinkAndShare(result){
 
 	if(result.status != "success"){
@@ -193,6 +201,7 @@ function displayLinkAndShare(result){
 }
 
 
+// Use OAuth to authenticate twitter, and then send a tweet with a link to the newly generated KML
 function shareKML(){
 
 
@@ -248,7 +257,7 @@ function makeMapFitMarkers() {
     map.fitBounds(bounds);
 }
 
-
+// calls the two types of requests that require permissions, giving the user the ability to grant permissions before starting the project
 function permissionsPopUp() {
 	bootbox.alert('When prompted, allow pop ups and location services to use this project<br/><b>Be sure to mark "always allow" for this site</b>',function(){
 
@@ -257,6 +266,7 @@ function permissionsPopUp() {
 	promptPopUps();// must be run automatically (not initiated by user click) in order for pop up blocker to run
 }
 
+// Makes a request for a pop up, giving the user the ability to "allow popups"
 function promptPopUps(){
 
 	console.log("Prompting user to allow pop ups");
@@ -268,7 +278,7 @@ function promptPopUps(){
     }
 }
 
-
+// Makes a request for location services, giving the user the ability to allow location services
 function promptLocationServices(){
 
 	console.log("Prompting user to allow location services");
