@@ -247,7 +247,7 @@ function makeMapFitMarkers() {
 
 
 function permissionsPopUp() {
-	bootbox.alert('When prompted, allow pop ups and location services to use this project<br/><b>Be sure to mark "always allowed"</b>',function(){
+	bootbox.alert('When prompted, allow pop ups and location services to use this project<br/><b>Be sure to mark "always allow" for this site</b>',function(){
 
     	promptLocationServices();
 	});
