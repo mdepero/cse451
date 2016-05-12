@@ -52,7 +52,7 @@ function setDestination(){
 		},
 	    error: function(xhr, status, error){
 	    	console.log(error);
-	    	bootbox.alert("An error occurred: "+xhr.responseText);
+			bootbox.alert("An error occurred: "+xhr.responseText);
 	    }
 	});
 }
@@ -61,7 +61,7 @@ function setDestination(){
 function gotDestination(result){
 	console.log(result);
 
-	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class="btn btn-primary" onclick="getDirections()">Get Directions</button></li>');
+	$('#output').append('<li>5. Got lat long, adding marker to map</li><li><button type="button" class="btn btn-primary" onclick="getDirections()">Generate Directions</button></li>');
 
 	var latlng = result.results[0].geometry.location;
 
@@ -75,6 +75,27 @@ function gotDestination(result){
 	makeMapFitMarkers();
 	
 }
+
+
+function generateDirections(){
+
+	$('#output').append('<li>6. Getting route data from Bing Maps REST service...');
+	$.ajax({
+		url: "http://dev.virtualearth.net/REST/v1/Routes? wayPoint.1=wayPoint1&viaWaypoint.2=viaWaypoint2&waypoint.3=wayPoint3&wayPoint.n=wayPointn&heading=heading&optimize=optimize&avoid=avoidOptions&distanceBeforeFirstTurn=distanceBeforeFirstTurn&routeAttributes=routeAttributes&maxSolutions=maxSolutions&tolerances=tolerance1,tolerance2,tolerancen&distanceUnit=distanceUnit&mfa=mfa&key=AkRn4tv0Mk98zABu8tq_k6EYgAyeHHkDZZ2z3xUhpNMAAkB7HnBFBa0_IXkzhEFD",
+		dataType: "json",
+		type: "GET",
+		success: function(result){
+			console.log(result);
+		},
+		error: function( xhr, status, error){
+			console.log(error);
+			bootbox.alert("An error occurred: "+xhr.responseText);
+		}
+	});
+
+}
+
+
 
 
 
