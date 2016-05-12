@@ -18,7 +18,7 @@ function promptAndGetLocation(){
 
 function showCurrentLocation(lat, long) {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 4,
+		zoom: 1,
 		center: {lat: lat, lng: long}
 	});
 	var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
