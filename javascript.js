@@ -7,7 +7,12 @@ function promptAndGetLocation(){
 			$('#map').html("");// clear the "allow location services" message
 			$('#output').append('<li>2. Current location found, displaying map...</li>');
 			showCurrentLocation(position.coords.latitude, position.coords.longitude);
-		});
+		},function(failure) {
+
+		    bootbox.alert("Geolocation error: "+failure.message);
+		    return;
+		    
+		  });
 	} else {
 		// Recursively call the function until the user allows location, or the user has an out of date browser
 		bootbox.alert("Please use a modern browser.");
