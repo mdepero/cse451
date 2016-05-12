@@ -228,7 +228,7 @@ function shareKML(){
 	.fail(function (err) {
 	    //handle error with err
 	    console.log(err);
-	    bootbox.alert("An OAuth Error Occurred: "+err);
+	    bootbox.alert("An OAuth Error Occurred: "+err+'<br/>Is pop up blocker enabled?');
 	});
 }
 
