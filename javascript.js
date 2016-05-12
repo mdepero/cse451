@@ -15,7 +15,8 @@ function promptAndGetLocation(){
 
 }
 
-var map, markers;
+var map;
+var markers = [];
 
 function showCurrentLocation(lat, long) {
 	map = new google.maps.Map(document.getElementById('map'), {
