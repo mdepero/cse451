@@ -55,6 +55,6 @@ function setDestination(){
 
 
 function gotDestination(result){
-	console.log(retult);
+	console.log(result);
 	bootbox.alert("got it");
 }
