@@ -188,7 +188,7 @@ function shareKML(kmlURL){
 	.done(function(result) {
 	    result.post('1.1/statuses/update.json', {
         data: {
-            status: 'this is a test tweet for cse451'
+            status: 'Hey, check out the KML file for the route I just found: '+kmlURL
         }
 	    })
 	    .done(function (response) {
