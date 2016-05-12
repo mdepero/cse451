@@ -252,7 +252,7 @@ function makeMapFitMarkers() {
 function hasPopUpBlocker() {
     var result = false;
 
-    var poppedWindow = window.open('./index.html');
+    var poppedWindow = window.open('README.md');//test with arbitrary file
 
     try {
         if (typeof poppedWindow == 'undefined') {
