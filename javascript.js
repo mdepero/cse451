@@ -9,9 +9,13 @@ function promptAndGetLocation(){
 			showCurrentLocation(position.coords.latitude, position.coords.longitude);
 		},function(failure) {
 
-		    bootbox.alert("Geolocation error: "+failure.message);
+		    bootbox.alert("Geolocation error: "+failure.message,function(){
+		    	if(failure.message.indexOf("Only secure origins are allowed") == 0) {
+			       bootbox.alert("Chrome 50 and newer does not allow geolocation on insecure connection (http) for this project, to view this demo, please use firefox or an older version of Chrome");
+			    }
+		    });
 		    return;
-		    
+
 		  });
 	} else {
 		// Recursively call the function until the user allows location, or the user has an out of date browser
