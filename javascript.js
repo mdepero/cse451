@@ -21,7 +21,7 @@ function showCurrentLocation(lat, long) {
 		zoom: 12,
 		center: {lat: lat, lng: long}
 	});
-	var image = 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-128.png';
+	var image = 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-32.png';
 	var beachMarker = new google.maps.Marker({
 		position: {lat: lat, lng: long},
 		map: map,
