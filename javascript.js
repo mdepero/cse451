@@ -79,9 +79,11 @@ function gotDestination(result){
 
 function generateDirections(){
 
+	console.log(markers[0].getPosition());
+
 	$('#output').append('<li>6. Getting route data from Bing Maps REST service...');
 	$.ajax({
-		url: "http://dev.virtualearth.net/REST/v1/Routes? wayPoint.1=wayPoint1&viaWaypoint.2=viaWaypoint2&waypoint.3=wayPoint3&wayPoint.n=wayPointn&heading=heading&optimize=optimize&avoid=avoidOptions&distanceBeforeFirstTurn=distanceBeforeFirstTurn&routeAttributes=routeAttributes&maxSolutions=maxSolutions&tolerances=tolerance1,tolerance2,tolerancen&distanceUnit=distanceUnit&mfa=mfa&key=AkRn4tv0Mk98zABu8tq_k6EYgAyeHHkDZZ2z3xUhpNMAAkB7HnBFBa0_IXkzhEFD",
+		url: "http://dev.virtualearth.net/REST/v1/Routes?wayPoint.1=\""+markers[0].getPosition().lat+"\"&wayPoint.2=Wadsworth%20Ohio&key=AkRn4tv0Mk98zABu8tq_k6EYgAyeHHkDZZ2z3xUhpNMAAkB7HnBFBa0_IXkzhEFD",
 		dataType: "json",
 		type: "GET",
 		success: function(result){
