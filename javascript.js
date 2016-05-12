@@ -282,6 +282,8 @@ function hasPopUpBlocker() {
     }
     if(result){
     	bootbox.alert('Please allow pop ups to use this project<br/><b>Be sure to mark "always allowed"</b>');
+    }else{
+    	poppedWindow.close();
     }
     console.log('Popup blocker status: '+result);
     return result;
