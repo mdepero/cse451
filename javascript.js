@@ -228,7 +228,7 @@ function shareKML(){
 	.fail(function (err) {
 	    //handle error with err
 	    console.log(err);
-	    bootbox.alert("An OAuth Error Occurred: "+err+"<br/>Be sure popups are always allowed");
+	    bootbox.alert("An OAuth Error Occurred: "+err);
 	});
 }
 
@@ -280,7 +280,10 @@ function checkPopUpBlocker() {
         //    console.warn("Could not access popup window", err);
         //}
     }
-
+    if(!result){
+    	bootbox.alert('Please allow pop ups to use this project<br/><b>Be sure to mark "always allowed"</b>');
+    }
+    console.log('Popup blocker status: '+result);
     return result;
 }
 
