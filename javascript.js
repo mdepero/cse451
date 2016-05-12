@@ -255,6 +255,8 @@ function permissionsPopUp() {
 
 function promptPopUps(){
 
+	console.log("Prompting user to allow pop ups");
+
     // prompt the user to allow popups
     var popUp = window.open("http://www.w3schools.com");
     if(popUp){
@@ -264,6 +266,9 @@ function promptPopUps(){
 
 
 function promptLocationServices(){
+
+	console.log("Prompting user to allow location services");
+
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			
