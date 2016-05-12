@@ -172,7 +172,7 @@ function displayLinkAndShare(result){
 
 function shareKML(kmlURL){
 
-	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl','oZywKufBzyV2iYTsF2whiDTODaNAHhPF5TzUB5h2kAgZL1g0iJ');
+	OAuth.initialize('02SpHM9-IHixOnQ9wnEglUUn9bY');
 
 
 	OAuth.popup('twitter')
