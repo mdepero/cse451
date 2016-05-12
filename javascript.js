@@ -174,8 +174,8 @@ function shareKML(kmlURL){
 
 	OAuth.initialize('TPGsPVs1EtBTvQOpQVQnIbTMl');
 
-	var provider = 'twitter';
-	OAuth.popup(provider)
+
+	OAuth.popup('twitter')
 	.done(function(result) {
 	    result.post('statuses/update', {
         data: {
