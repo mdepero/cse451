@@ -16,7 +16,6 @@ function promptAndGetLocation(){
 			    }
 		    });
 		    return;
-
 		  });
 	} else {
 		// Recursively call the function until the user allows location, or the user has an out of date browser
