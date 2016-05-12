@@ -210,7 +210,7 @@ function shareKML(){
 	.done(function(result) {
 	    result.post('1.1/statuses/update.json', {
         data: {
-            status: 'Hey, check out the KML file for the route I just found: '+kmlURL
+            status: 'Auto generated tweet with a link to a KML file of my route: '+kmlURL
         }
 	    })
 	    .done(function (response) {
